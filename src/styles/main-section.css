@@ -1,0 +1,8 @@
+.main-section{
+    background-color: rgb(224, 223, 223);
+    flex: 1;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}

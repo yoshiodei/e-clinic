@@ -1,0 +1,28 @@
+.patient-info{
+    height: 18vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.patient-info__card{
+    height: 80%;
+    width: 18vw;
+    color: white;
+    background-color: grey;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.patient-info__text-div h4{
+    text-transform: uppercase;
+}
+
+.patient-info__text-div h6{
+    font-size: 2em;
+    text-align: right;
+}
