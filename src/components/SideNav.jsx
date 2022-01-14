@@ -1,4 +1,4 @@
-import React from 'react';
+import "./../styles/side-nav.css";
 
 const Sidenav = () => {
     return (

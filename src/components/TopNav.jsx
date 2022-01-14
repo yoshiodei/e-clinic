@@ -1,4 +1,4 @@
-import "./../styles/top-nav";
+import "./../styles/top-nav.css";
 
 const Topnav = () => {
     return (
