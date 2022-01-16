@@ -1,0 +1,28 @@
+.registration_form {
+  display: flex;
+}
+
+.left_registrationform {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 40%;
+}
+
+.right_registrationform {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 60%;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.form-checkbox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registration_buttons {
+  margin-left: 87%;
+  margin-top: 10px;
+}
