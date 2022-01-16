@@ -1,4 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Consultation from '../pages/Consultation';
 import Patientspage from "../pages/PatientsPage";
 import Testpage from '../pages/TestPage';
 import "./../styles/page-content.css";
@@ -10,7 +11,7 @@ const Pagecontent = () => {
             {/* give it a class name of "main-page-component" to apply default styling */}
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Patientspage/>}/> 
+                    <Route path="/" element={<Consultation/>}/> 
                     <Route path="/test" element={<Testpage/>}/> 
                 </Routes>
             </BrowserRouter>
