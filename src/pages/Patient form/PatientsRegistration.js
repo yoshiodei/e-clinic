@@ -74,7 +74,7 @@ const Patientsregistration = () => {
         </div>
       </div>
       <div className="registration_buttons">
-        <Button variant="success" size="sm">
+        <Button style={{ marginRight: 5 }} variant="success" size="sm">
           Subit
         </Button>{" "}
         <Button variant="success" size="sm">
