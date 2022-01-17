@@ -12,6 +12,12 @@
   margin-bottom: 15px;
 }
 
+.tablebtns {
+  color: white;
+  border-radius: 3px;
+}
+
 .progress_step {
-  padding: 0px 40%;
+  display: flex;
+  justify-content: right;
 }
