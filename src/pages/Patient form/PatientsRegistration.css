@@ -23,6 +23,7 @@
 }
 
 .registration_buttons {
-  margin-left: 87%;
-  margin-top: 10px;
+  display: flex;
+  justify-content: right;
+  margin-top: 5px;
 }
