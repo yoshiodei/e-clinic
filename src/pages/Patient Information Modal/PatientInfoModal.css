@@ -1,0 +1,54 @@
+.modal-title {
+  font-size: 35px;
+  margin-left: 25%;
+}
+
+.modal-body {
+  background-color: whitesmoke;
+}
+
+.modalbody-left {
+  width: 25%;
+}
+
+.modalbody-middle {
+  background-color: white;
+  width: 50%;
+  padding: 10px;
+  padding-top: 30px;
+}
+
+.modalbody-middle > p {
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.table-header {
+  background-color: rgb(41, 111, 202);
+  color: white;
+}
+
+.modalbody-right {
+  width: 25%;
+}
+
+.right-btn {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.send-btn {
+  font-size: 12px;
+  margin-left: 20px;
+  background-color: rgb(0, 182, 30);
+  border-color: rgb(0, 182, 30);
+}
