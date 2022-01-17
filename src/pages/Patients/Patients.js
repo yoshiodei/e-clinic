@@ -1,6 +1,6 @@
 import React from "react";
 import "./Patients.css";
-import { Button, ButtonGroup, ButtonToolbar, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Table } from "react-bootstrap";
 
 const Patients = () => {
   return (
@@ -17,7 +17,7 @@ const Patients = () => {
       <div className="patients_table">
         <Table striped bordered hover size="sm">
           <thead>
-            <tr>
+            <tr style={{ backgroundColor: "grey", color: "white" }}>
               <th></th>
               <th>Name</th>
               <th>Age</th>
@@ -34,13 +34,7 @@ const Patients = () => {
               <td>Female</td>
               <td>Cash</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -50,13 +44,7 @@ const Patients = () => {
               <td>Female</td>
               <td>NHIS</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -66,13 +54,7 @@ const Patients = () => {
               <td>Male</td>
               <td>Cash</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -82,13 +64,7 @@ const Patients = () => {
               <td>Female</td>
               <td>Cash</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -98,13 +74,7 @@ const Patients = () => {
               <td>Male</td>
               <td>NHIS</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -114,13 +84,7 @@ const Patients = () => {
               <td>Male</td>
               <td>Cash</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -130,13 +94,7 @@ const Patients = () => {
               <td>Male</td>
               <td>NHIS</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
             <tr>
@@ -146,25 +104,17 @@ const Patients = () => {
               <td>Male</td>
               <td>Cash</td>
               <td>
-                <Button
-                  className="consultation_button"
-                  variant="primary"
-                  size="sm"
-                >
-                  send
-                </Button>{" "}
+                <button className="tablebtns">send</button>
               </td>
             </tr>
           </tbody>
         </Table>
       </div>
       <div className="progress_step">
-        <ButtonToolbar aria-label="Toolbar with button groups">
-          <ButtonGroup className="me-2" aria-label="First group">
-            <Button>1</Button> <Button>2</Button> <Button>3</Button>{" "}
-            <Button>4</Button>
-          </ButtonGroup>
-        </ButtonToolbar>
+        <ButtonGroup aria-label="Basic example">
+          <Button variant="primary">Previous</Button>
+          <Button variant="secondary">Next</Button>
+        </ButtonGroup>
       </div>
     </div>
   );
