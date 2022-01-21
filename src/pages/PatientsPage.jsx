@@ -7,10 +7,10 @@ import Patients from './Patients/Patients';
 const Patientspage = () => {
     return (
         <section className='main-page-section'>
-            {/* <Patients/> */}
+            <Patients/>
             {/* <Patientsregistration/> */}
             {/* <Accounts/> */}
-            <Patientinfomodal/>
+            {/* <Patientinfomodal/> */}
         </section>
     );
 }
