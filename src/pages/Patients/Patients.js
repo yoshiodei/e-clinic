@@ -2,7 +2,8 @@ import React from "react";
 import "./Patients.css";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
 
-const Patients = () => {
+const Patients = ({ name, age, gender, paymentMethod }) => {
+  console.log(age);
   return (
     <div className="patients">
       <div className="patients_header">
@@ -79,7 +80,7 @@ const Patients = () => {
             </tr>
             <tr>
               <td>6</td>
-              <td>John Doe</td>
+              <td>{name}</td>
               <td>40</td>
               <td>Male</td>
               <td>Cash</td>
