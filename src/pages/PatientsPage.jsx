@@ -4,10 +4,10 @@ import Patientsregistration from './Patient form/PatientsRegistration';
 import Patientinfomodal from './Patient Information Modal/PatientInfoModal';
 import Patients from './Patients/Patients';
 
-const Patientspage = () => {
+const Patientspage = (props) => {
     return (
         <section className='main-page-section'>
-            <Patients/>
+            <Patients props={props}/>
             {/* <Patientsregistration/> */}
             {/* <Accounts/> */}
             {/* <Patientinfomodal/> */}
