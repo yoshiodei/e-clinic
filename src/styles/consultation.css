@@ -1,0 +1,137 @@
+.modal-custom.modal-dialog{
+    min-width: 70vw;
+}
+
+.modal-custom .modal-header{
+    color: white;
+    text-align: center;
+    background-color: #0072bc;
+}
+
+.modal-custom .modal-header .modal-title{
+    width: 100%;
+}
+
+.history-modal .modal-body{
+    padding: 2vh 10vw;
+}
+
+.history-modal .modal-footer{
+    padding-left:10vw;
+    padding-right: 10vw
+}
+
+.modal-body h5 {
+    text-align: right;
+}
+
+.alert {
+    padding: 0.5em;
+}
+
+.alert-custom {
+    color: white;
+    font-weight: 600;
+    background-color: #0072bc;
+    margin-bottom: 3px;
+}
+
+.thead-custom{
+    background-color: #dfdcdc;
+    color: rgba(0, 0, 0, 0.63);
+}
+
+.remove-bordertop{
+    border-top: none !important;
+}
+
+/* ----- form ---- */
+
+.form-custom {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form-custom-div {
+    margin-right: 30px;
+    width: 60%;
+}
+
+.diagnose-div{
+    display: flex;
+}
+
+.diagnose-div>* ,.medicines>*{
+    margin-right: 15px;
+}
+
+.diagnose-test, .drug__inner-div{
+    background-color: lightgrey;
+    border-radius: 8px;
+    height: 12vh;
+    width: 100%;
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.diagnose-test__div, .drug-div{
+    height: 100%;
+    padding: 0.4em 0.7em;
+}
+
+.diagnose-test__name-div{
+    flex: 1.5;
+}
+
+.diagnose-test__img-div{
+    flex: 1;
+}
+
+.diagnose-test__fb-div{
+    flex: 2.5;
+}
+
+.diagnose-test__div+.diagnose-test__div, .drug-div+.drug-div{
+    border-left: 1px solid darkgray;
+}
+
+.slim-btn{
+    padding: 0.02em 0.7em;
+}
+
+.h6-custom{
+    margin-bottom: 5px;
+}
+
+.diagnose-textarea{
+    display: flex;
+}
+
+.diagnose-textarea>div, .drug-div{
+    flex: 1;
+}
+
+.drug-div-space{
+    flex: 2.7;
+}
+
+.modal-body-custom{
+    max-height: 80vh;
+    overflow-y: scroll ;
+}
+
+.drug-count{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.drug-count h6{
+    margin: 0;
+}
+
+.num-input-custom{
+    width: 8%;
+    margin-left: 15px;
+    padding: 0.1em 0.8em;
+}
