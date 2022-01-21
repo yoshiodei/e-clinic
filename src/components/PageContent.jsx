@@ -3,7 +3,7 @@ import Patientspage from "../pages/PatientsPage";
 import Testpage from '../pages/TestPage';
 import "./../styles/page-content.css";
 
-const Pagecontent = ({props}) => {
+const Pagecontent = (props) => {
     return (
         <div className="page-content">
             {/* the code for the page component goes here */}
