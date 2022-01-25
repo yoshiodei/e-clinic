@@ -135,3 +135,20 @@
     margin-left: 15px;
     padding: 0.1em 0.8em;
 }
+
+.no-item {
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.no-item h3{
+    flex: 1;
+    color: darkgray;
+    text-align: center;
+}

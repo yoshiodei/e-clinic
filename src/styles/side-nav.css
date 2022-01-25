@@ -4,3 +4,34 @@
     overflow: hidden;
     background-color: grey;
 }
+
+.side-nav div.title-div{
+    text-align: center;
+    height: 12vh;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-nav div h1{
+    color: white;
+    letter-spacing: 2px;
+}
+
+.side-nav div.item-div{
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    padding-left: 2vw;
+    border-left: 5px solid transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+.side-nav div.item-div:hover, .side-nav div.item-div.active{
+    border-left: 5px solid white;
+    background-color: rgba(255, 255, 255, 0.164);
+}
