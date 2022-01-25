@@ -1,13 +1,16 @@
 import React from 'react';
 
-const Patienthistorymodsal = () => {
+const Patienthistorymodsal = ({patient}) => {
+
+    // console.log("patient object",patient);
+
     return (
         //  Patient History Modal 
         <div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen history-modal">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">=Patient History</h5>
+                <h4 class="modal-title" id="exampleModalLabel">E-Clinic</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -25,9 +28,9 @@ const Patienthistorymodsal = () => {
                     </thead>
                     <tbody class="remove-bordertop">
                         <tr>
-                            <td>Melvin Doe</td>
-                            <td>28-07-1983</td>
-                            <td>Male</td>
+                            <td>{patient[0] ? patient[0].name : "None"}</td>
+                            <td>{patient[0] ? patient[0].dateOfBirth : "None"}</td>
+                            <td>{patient[0] ? patient[0].gender : "None"}</td>
                         </tr>
                     </tbody>
                 </table>

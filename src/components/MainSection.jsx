@@ -3,12 +3,12 @@ import "./../styles/main-section.css";
 import Patientinfo from './PatientInfo';
 import Pagecontent from './PageContent';
 
-const Mainsection = () => {
+const Mainsection = ({patients}) => {
     return (
         <main className='main-section'>
             <Topnav />
-            <Patientinfo />
-            <Pagecontent />
+            <Patientinfo   />
+            <Pagecontent patients={patients} />
         </main>
     );
 }
