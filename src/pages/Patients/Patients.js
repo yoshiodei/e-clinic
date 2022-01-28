@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Patients.css";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
+import Pagination from "../../components/Pagination";
 
 const Patients = ({ patients }) => {
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [patientId, setPatientId] = useState("");
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filterName = () =>
+    patients.filter((patient, index) =>
+      patient.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    );
+
+  const handleCheckId = (id) => {
+    setPatientId(id);
+    // console.log('your id is', id);
+  };
+
   return (
     <div className="patients">
       <div className="patients_header">
@@ -12,7 +31,12 @@ const Patients = ({ patients }) => {
         </Button>
       </div>
       <div className="patients_input">
-        <input placeholder="Type Patient Name To Search" />
+        <input
+          type="text"
+          value={search}
+          onChange={handleChange}
+          placeholder="Type Patient Name To Search"
+        />
       </div>
       <div className="patients_table">
         <Table striped bordered hover size="sm">
@@ -27,27 +51,34 @@ const Patients = ({ patients }) => {
             </tr>
           </thead>
           <tbody>
-            {patients.map((patient, index) => (
-              <tr>
-                <td>{index + 1}</td>
-                <td>{patient.name}</td>
-                <td>{patient.age}</td>
-                <td>{patient.gender}</td>
-                <td>Cash</td>
-                <td>
-                  <button className="tablebtns">send</button>
-                </td>
-              </tr>
-            ))}
+            {filterName().length === 0 ? (
+              <div colspan="7" className="no-item">
+                {" "}
+                <h3>No item in list</h3>
+              </div>
+            ) : null}
+            {filterName()
+              .slice((page - 1) * 8, page * 8)
+              .map((patient, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{patient.name}</td>
+                    <td>{patient.age}</td>
+                    <td>{patient.gender}</td>
+                    <td>Cash</td>
+                    <td>
+                      <button className="tablebtns">send</button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </Table>
       </div>
-      <div className="progress_step">
-        <ButtonGroup aria-label="Basic example">
-          <Button variant="primary">Previous</Button>
-          <Button variant="secondary">Next</Button>
-        </ButtonGroup>
-      </div>
+      {filterName().length !== 0 ? (
+        <Pagination patientNumber={filterName().length} setPage={setPage} />
+      ) : null}
     </div>
   );
 };
