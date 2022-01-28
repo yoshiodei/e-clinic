@@ -27,7 +27,7 @@ const Patientsregistration = () => {
               <Form.Control type="text" placeholder="First Name" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Other Names" />
+              <Form.Control type="text" placeholder="Last Names" />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Control type="text" placeholder="Other Names" />
