@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PatientsRegistration.css";
 import { Form, Button } from "react-bootstrap";
 
 const Patientsregistration = () => {
+  const [patientsInput, setPatientsInput] = useState([
+    [
+      {
+        id: 1,
+        name: "",
+        dateOfBirth: "",
+        age: "",
+        gender: "",
+        address: "",
+        phoneNumber: "",
+        paymentMethod: "",
+        nextofKin: "",
+        kinphoneNumber: "",
+      },
+    ],
+  ]);
+
+  const handleChange = (e) => {
+    setPatientsInput({ ...patientsInput, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(patientsInput);
+
+    setPatientsInput({
+      name: "",
+      dateOfBirth: "",
+      age: "",
+      gender: "",
+      address: "",
+      phoneNumber: "",
+      paymentMethod: "",
+      nextofKin: "",
+      kinphoneNumber: "",
+    });
+  };
+
   return (
     <div className="patient_registration">
       <h4 style={{ marginLeft: 10, marginBottom: 20 }}>
@@ -13,24 +51,20 @@ const Patientsregistration = () => {
         <div className="left_registrationform">
           <h5 style={{ marginBottom: 20 }}>Personal Details</h5>
           <Form>
-            <Form.Group
-              className="mb-3 form-checkbox"
-              controlId="formBasicCheckbox"
-            >
-              <Form.Check type="checkbox" label="Prof." />
-              <Form.Check type="checkbox" label="Dr." />
-              <Form.Check type="checkbox" label="Mr." />
-              <Form.Check type="checkbox" label="Mrs." />
-              <Form.Check type="checkbox" label="Miss" />
-            </Form.Group>
+            <Form.Check type="radio" label="Prof." name="group2" id="radio1" />
+            <Form.Check type="radio" label="Dr." name="group2" id="radio1" />
+            <Form.Check type="radio" label="Miss" name="group2" id="radio1" />
+            <Form.Check type="radio" label="Mr." name="group2" id="radio2" />
+            <Form.Check type="radio" label="Mrs." name="group2" id="radio3" />
             <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="First Name" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Last Names" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Other Names" />
+              <Form.Control
+                style={{ marginTop: 20 }}
+                value={patientsInput.name}
+                name="name"
+                type="text"
+                onChange={handleChange}
+                placeholder="Name"
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Select>
@@ -39,7 +73,13 @@ const Patientsregistration = () => {
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control type="date" placeholder="Date od Birth" />
+              <Form.Control
+                value={patientsInput.dateOfBirth}
+                onChange={handleChange}
+                name="dateOfBirth"
+                type="date"
+                placeholder="Date od Birth"
+              />
             </Form.Group>
           </Form>
         </div>
@@ -47,10 +87,22 @@ const Patientsregistration = () => {
           <h5 style={{ marginBottom: 20 }}>Other Details</h5>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Address" />
+              <Form.Control
+                value={patientsInput.address}
+                onChange={handleChange}
+                name="address"
+                type="text"
+                placeholder="Address"
+              />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Next of Kin" />
+              <Form.Control
+                value={patientsInput.nextofKin}
+                onChange={handleChange}
+                name="nextofKin"
+                type="text"
+                placeholder="Next of Kin"
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Select>
@@ -59,10 +111,22 @@ const Patientsregistration = () => {
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control type="tel" placeholder="Next of Kin Phone Number" />
+              <Form.Control
+                value={patientsInput.kinphoneNumber}
+                onChange={handleChange}
+                name="kinphoneNumber"
+                type="tel"
+                placeholder="Next of Kin Phone Number"
+              />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Control type="tel" placeholder="Patient Phone Number" />
+              <Form.Control
+                value={patientsInput.phoneNumber}
+                onChange={handleChange}
+                name="phoneNumber"
+                type="tel"
+                placeholder="Patient Phone Number"
+              />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Select>
@@ -74,7 +138,12 @@ const Patientsregistration = () => {
         </div>
       </div>
       <div className="registration_buttons">
-        <Button style={{ marginRight: 5 }} variant="success" size="sm">
+        <Button
+          onClick={handleSubmit}
+          style={{ marginRight: 5 }}
+          variant="success"
+          size="sm"
+        >
           Subit
         </Button>{" "}
         <Button variant="success" size="sm">
