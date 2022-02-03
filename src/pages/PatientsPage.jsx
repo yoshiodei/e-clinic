@@ -8,8 +8,8 @@ const Patientspage = ({patients}) => {
 
     return (
         <section className='main-page-section'>
-            <Patients patients={patients}/>
-            {/* <Patientsregistration/> */}
+            {/* <Patients patients={patients}/> */}
+            <Patientsregistration/>
             {/* <Accounts/> */}
             {/* <Patientinfomodal/> */}
         </section>
