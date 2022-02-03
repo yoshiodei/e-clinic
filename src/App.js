@@ -1,9 +1,10 @@
 import { ConstructionOutlined } from "@mui/icons-material";
+import { useState } from "react";
 import Mainsection from "./components/MainSection";
 import Sidenav from "./components/SideNav";
 
 function App() {
-  const patients = [
+  const [patients, setPatients] = useState([
     {
       id: 1,
       name: "john Doe",
@@ -164,7 +165,7 @@ function App() {
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
     },
-  ];
+  ]);
 
   return (
     <div className="App">
