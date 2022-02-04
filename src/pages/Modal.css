@@ -1,0 +1,22 @@
+.modal-title {
+  font-size: 50px;
+  font-style: oblique;
+  font-weight: bolder;
+}
+.date {
+  position: absolute;
+  right: 10%;
+  top: 10%;
+}
+.modal-topic {
+  padding: 10px;
+
+  background-color: blue;
+  color: white;
+}
+.modal-table {
+  margin-bottom: 30px;
+}
+.button {
+  width: 100%;
+}
