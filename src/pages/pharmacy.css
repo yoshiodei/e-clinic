@@ -1,0 +1,42 @@
+.time {
+  cursor: pointer;
+  padding: 12px;
+}
+.icon {
+  font-size: 20px;
+}
+.table {
+  margin-top: 20px;
+  text-align: center;
+}
+.label {
+  margin-left: 30px;
+  background-color: gray;
+  padding: 10px;
+  color: white;
+}
+.gen-input {
+  padding-right: 40px;
+}
+.select {
+  padding-right: 100px;
+}
+.Drug-details {
+  border: 2px solid gray;
+  margin-left: 20px;
+}
+.Drugs {
+  border: 2px solid gray;
+}
+.input {
+  margin-bottom: 15px;
+  margin-left: 10px;
+  width: 1000px;
+}
+.topic {
+  padding: 20px;
+}
+.pagi {
+  position: absolute;
+  right: 40px;
+}
