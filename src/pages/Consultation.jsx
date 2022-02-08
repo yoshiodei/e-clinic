@@ -8,7 +8,7 @@ import Pagination from "../components/Pagination";
 
 
 
-const Consultation = ({patients}) => {
+const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
 
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
@@ -64,17 +64,59 @@ const Consultation = ({patients}) => {
                                     <td colspan="3">{patient.name}</td>
                                     <td>{patient.age}</td>
                                     <td>{patient.gender}</td>
-                                    <td>
-                                        <button onClick={()=>handleCheckId(patient.id)} type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#historyModal">History</button>
+                                    <td className="custom-td">
+                                        <button onClick={()=>handleCheckId(patient.id)} type="button" class="btn btn-warning btn-sm " data-bs-toggle="modal" data-bs-target="#historyModal">
+                                        <i class="fas fa-folder-open" style={{color: "rgb(71, 71, 71)"}}></i>
+                                        </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#examModal">Pending</button>
+                                        {
+                                         !patient.examDone   &&  (<button onClick={()=>handleCheckId(patient.id)} type="button" class="btn btn-secondary btn-sm custom-btn" data-bs-toggle="modal" data-bs-target="#examModal">
+                                        <i class="bi bi-hourglass-split icon-style"></i>
+                                             Pending
+                                        </button>)
+                                        }
+                                        
+                                        { 
+                                            patient.examDone &&
+                                            (<button onClick={()=>handleCheckId(patient.id)} type="button" disabled class="btn btn-success btn-sm custom-btn" data-bs-toggle="modal" data-bs-target="#examModal">
+                                                <i class="bi bi-check-lg icon-style"></i>
+                                             Done
+                                        </button>)
+                                        }
+
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" disabled={true} data-bs-target="#diagnoseModal">Pending</button>
+                                        {
+                                         !patient.diagnosisDone &&   
+                                        (<button type="button" class="btn btn-secondary btn-sm custom-btn" data-bs-toggle="modal" disabled={!patient.examDone} data-bs-target="#diagnoseModal">
+                                            <i class="bi bi-hourglass-split icon-style"></i>
+                                            Pending</button>)
+                                        }
+                                        {
+                                         patient.diagnosisDone &&   
+                                        (<button type="button" class="btn btn-success btn-sm custom-btn" data-bs-toggle="modal" disabled={patient.examDone} data-bs-target="#diagnoseModal">
+                                            <i class="bi bi-check-lg icon-style"></i>
+                                            Done</button>)
+                                        }
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#prescribeModal">Pending</button>
+                                        {/* <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" disabled={false} data-bs-target="#prescribeModal">
+                                            <i class="bi bi-hourglass-split icon-style"></i>
+                                            Pending</button> */}
+
+                                        {
+                                        !(patient.diagnosisDone && patient.examDone && patient?.prescriptionDone) &&   
+                                        (<button type="button" class="btn btn-secondary btn-sm custom-btn" data-bs-toggle="modal" disabled={!(patient.examDone && patient.diagnosisDone)} data-bs-target="#prescribeModal">
+                                            <i class="bi bi-hourglass-split icon-style"></i>
+                                            Pending</button>)
+                                        }
+                                        {
+                                         (patient.diagnosisDone && patient?.prescriptionDone && patient.examDone) &&   
+                                        (<button type="button" class="btn btn-success btn-sm custom-btn" data-bs-toggle="modal" disabled={true} data-bs-target="#prescribeModal">
+                                            <i class="bi bi-check-lg icon-style"></i>
+                                            Done</button>)
+                                        }    
                                     </td>
                                     <td>
 
@@ -90,16 +132,16 @@ const Consultation = ({patients}) => {
                 </tbody>
             </table>
             { filterName().length != 0 ? 
-            ( <Pagination patientNumber={filterName().length} setPage={setPage} /> ) : null
+            ( <Pagination patientNumber={filterName().length} setPage={setPage} page={page} /> ) : null
             }
 
             
             {/* ---- Modals ---- */}
 
             <Patienthistorymodsal patient={patients.filter(patient=> patient.id == patientId)} />
-            <Exammodal />
-            <Diagnosemodal />
-            <Prescribemodal />
+            <Exammodal  patient={patients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} examData={examData} />
+            <Diagnosemodal patient={patients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} updatePatientList={updatePatientList} />
+            <Prescribemodal patient={patients.filter(patient=> patient.id == patientId)} updatePatientList={updatePatientList}/>
             
 
         </section>

@@ -111,8 +111,13 @@
     flex: 1;
 }
 
+.drug-div-btn{
+    flex: 0.5;
+}
+
 .drug-div-space{
     flex: 2.7;
+    align-self: center;
 }
 
 .modal-body-custom{
@@ -152,3 +157,24 @@
     color: darkgray;
     text-align: center;
 }
+
+.icon-style {
+    margin-right: 5px;
+    
+}
+
+.custom-td {
+    padding-left: 1.5em !important;
+}
+
+.custom-btn{
+    min-width: 100px;
+}
+
+.custom-button{
+    margin-left: 15px;
+    padding:  2px 0px;
+    min-width: 80px;
+    font-size: 0.9em;
+}
+

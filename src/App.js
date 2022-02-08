@@ -1,10 +1,11 @@
 import Mainsection from "./components/MainSection";
 import Sidenav from "./components/SideNav";
+import { useState } from 'react';
 
 
 function App() {
 
-  const patients = [
+  const [patients, setPatients] = useState([
     {
       id: 1,
       name: "John Doe",
@@ -14,6 +15,8 @@ function App() {
       address: "Parsnip St. East Legon",
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
   
     {
@@ -25,6 +28,8 @@ function App() {
       address: "Klagon, Accra",
       phoneNumber: "0579853237",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 3,
@@ -35,6 +40,8 @@ function App() {
       address: "Mango St. East Legon",
       phoneNumber: "0243049937",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 4,
@@ -45,6 +52,8 @@ function App() {
       address: "Orange St. East Legon",
       phoneNumber: "0243869937",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 5,
@@ -55,6 +64,8 @@ function App() {
       address: "Korlegonnor, Accra",
       phoneNumber: "0266849937",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 6,
@@ -65,6 +76,8 @@ function App() {
       address: "Kwame Nkrumah Circle, Accra",
       phoneNumber: "0203946287",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 7,
@@ -75,6 +88,8 @@ function App() {
       address: "Nima, Accra",
       phoneNumber: "054479347",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 8,
@@ -85,6 +100,8 @@ function App() {
       address: "Sowutuom, Accra",
       phoneNumber: "0244549937",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 9,
@@ -95,6 +112,8 @@ function App() {
       address: "Parsnip St. East Legon",
       phoneNumber: "0203049937",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 10,
@@ -105,6 +124,8 @@ function App() {
       address: "Parsnip St. East Legon",
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 11,
@@ -115,6 +136,8 @@ function App() {
       address: "Algon St. Tema",
       phoneNumber: "0238563945",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 12,
@@ -125,6 +148,8 @@ function App() {
       address: "Latebiokorshie, Accra",
       phoneNumber: "0544829306",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 13,
@@ -135,6 +160,8 @@ function App() {
       address: "Lapaz, Accra",
       phoneNumber: "0507291726",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 14,
@@ -145,6 +172,8 @@ function App() {
       address: "Lagoon St Dansoman",
       phoneNumber: "0578192712",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 15,
@@ -155,6 +184,8 @@ function App() {
       address: "Awoshie, Accra",
       phoneNumber: "0524808128",
       paymentMethod: "Cash",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 16,
@@ -165,6 +196,8 @@ function App() {
       address: "Labone, Accra",
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
     {
       id: 17,
@@ -175,14 +208,57 @@ function App() {
       address: "James Town, Accra",
       phoneNumber: "0503647834",
       paymentMethod: "NHIS",
+      examDone: false,
+      diagnosisDone: false,
     },
-  ];
+  ]);
   
+  const [diseaseList, seDiseaseList] = useState(
+    [
+      {
+        name: "Malaria",
+        id: "malaria" 
+      },
+      {
+        name: "Fever",
+        id: "fever" 
+      },
+      {
+        name: "Pneumonia",
+        id: "pneumonia" 
+      },
+      {
+        name: "Cancer",
+        id: "cancer" 
+      },
+      {
+        name: "Syphilis",
+        id: "syphilis" 
+      }
+    ]
+  );
+
+
+
+  const examData = (pid, obj) => {
+    let newPatients = patients.map((patient) => (patient.id == pid ? {...patient, ...obj} : patient) );
+    setPatients(newPatients);
+    // console.log("new patients", newPatients);
+    console.log( "List of patients",patients );
+  }
+
+  const updatePatientList = (id, obj) => {
+     let newPatients = patients.map((patient) => (patient.id == id ? {...patient, ...obj} : patient) );
+     setPatients(newPatients);
+     console.log("update", patients);
+  }
+
+
 
   return (
     <div className="App">
         <Sidenav />
-        <Mainsection patients={patients} />
+        <Mainsection patients={patients} examData={examData} diseaseList={diseaseList} updatePatientList={updatePatientList}/>
     </div>
   );
 }

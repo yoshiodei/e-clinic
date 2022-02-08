@@ -12,7 +12,7 @@
     color: white;
     background-color: grey;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,4 +25,8 @@
 .patient-info__text-div h6{
     font-size: 2em;
     text-align: right;
+}
+
+.custom-icon{
+    font-size: 4em;
 }
