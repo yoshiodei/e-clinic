@@ -2,7 +2,9 @@ import React from 'react';
 
 const Patienthistorymodsal = ({patient}) => {
 
-    // console.log("patient object",patient);
+    // gets todays date
+    let today = new Date();
+    let patientData = patient[0];
 
     return (
         //  Patient History Modal 
@@ -14,7 +16,7 @@ const Patienthistorymodsal = ({patient}) => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5>Monday, 17 January 2022</h5>
+                <h5>{today.toDateString()}</h5>
                 <div class="alert alert-custom" role="alert">
                       Patient Infromation
                 </div>
@@ -28,9 +30,9 @@ const Patienthistorymodsal = ({patient}) => {
                     </thead>
                     <tbody class="remove-bordertop">
                         <tr>
-                            <td>{patient[0] ? patient[0].name : "None"}</td>
-                            <td>{patient[0] ? patient[0].dateOfBirth : "None"}</td>
-                            <td>{patient[0] ? patient[0].gender : "None"}</td>
+                            <td>{patientData?.name ? patientData.name : "None"}</td>
+                            <td>{patientData?.dateOfBirth ? patientData.dateOfBirth : "None"}</td>
+                            <td>{patientData?.gender ? patientData.gender : "None"}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -48,8 +50,8 @@ const Patienthistorymodsal = ({patient}) => {
                     </thead>
                     <tbody class="remove-bordertop">
                         <tr>
-                            <td>None</td>
-                            <td colspan="2">None</td>
+                            <td>{patientData?.complaint ? patientData.complaint : "None"}</td>
+                            <td colspan="2">{patientData?.historyOfComplaint ? patientData.historyOfComplaint : "None"}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -67,8 +69,17 @@ const Patienthistorymodsal = ({patient}) => {
                     </thead>
                     <tbody class="remove-bordertop">
                         <tr>
-                            <td>None</td>
-                            <td colspan="2">None</td>
+                            <td>{patientData?.diagnosis ? patientData.diagnosis : "None"}</td>
+                            <td colspan="2">
+                                {
+                                    patientData?.medicines && patientData.medicines.map( (med)=> (
+                                       <p>{med.name}</p>  
+                                    ))
+                                }
+                                {
+                                    !patientData?.medicines && "None"
+                                }
+                            </td>
                         </tr>
                     </tbody>
                 </table>
