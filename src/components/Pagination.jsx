@@ -1,6 +1,6 @@
 import React from 'react';
 
-    const Pagination = ({patientNumber, setPage}) => {
+    const Pagination = ({patientNumber, setPage, page}) => {
 
     let pagesArray = [];
     let numberOfPages = Math.ceil((patientNumber/5)); 
@@ -11,19 +11,29 @@ import React from 'react';
     const handleChangePage = (page)=>{
         setPage(page);
     }
+
+    const handlePrev = () => {
+        setPage(--page);
+        console.log(page);
+    }
+
+    const handleNext = () => {
+        setPage(++page);
+
+    }
     
 
     return (
         <nav aria-label="Page navigation">
                 <ul class="pagination pagination-sm justify-content-end">
-                    <li class="page-item"  ><button class="page-link">Previous</button></li>
+                    <li class="page-item"  ><button class="page-link" disabled={ page == 1 ? true : false }  onClick={handlePrev}>Previous</button></li>
                     {
                         pagesArray.map(page =>
                         (  
                             <li class="page-item"><button class="page-link" onClick={()=>handleChangePage(page)}>{page}</button></li>
                         ))
                     }
-                    <li class="page-item"  ><button class="page-link">Next</button></li>
+                    <li class="page-item"  ><button class="page-link" disabled={ page == numberOfPages ? true : false } onClick={handleNext}>Next</button></li>
                 </ul>
         </nav>
     );
