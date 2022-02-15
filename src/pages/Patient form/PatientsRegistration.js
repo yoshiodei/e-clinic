@@ -2,23 +2,32 @@ import React, { useState } from "react";
 import "./PatientsRegistration.css";
 import { Form, Button } from "react-bootstrap";
 
-const Patientsregistration = () => {
-  const [patientsInput, setPatientsInput] = useState([
-    [
-      {
-        id: 1,
-        name: "",
-        dateOfBirth: "",
-        age: "",
-        gender: "",
-        address: "",
-        phoneNumber: "",
-        paymentMethod: "",
-        nextofKin: "",
-        kinphoneNumber: "",
-      },
-    ],
-  ]);
+const Patientsregistration = ({ addNewPatient }) => {
+  const calcAge = getAge(patientsInput.dateOfBirth);
+  const [patientsInput, setPatientsInput] = useState({
+    id: 1,
+    name: "",
+    dateOfBirth: "",
+    age: calcAge(),
+    gender: "",
+    address: "",
+    phoneNumber: "",
+    paymentMethod: "",
+    nextofKin: "",
+    kinphoneNumber: "",
+  });
+
+  const getAge = (dateString) => {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+  console.log("age: " + getAge(patientsInput.dateOfBirth));
 
   const handleChange = (e) => {
     setPatientsInput({ ...patientsInput, [e.target.name]: e.target.value });
@@ -27,6 +36,7 @@ const Patientsregistration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(patientsInput);
+    addNewPatient(patientsInput);
 
     setPatientsInput({
       name: "",
