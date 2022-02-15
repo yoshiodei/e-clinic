@@ -4,6 +4,7 @@ import Mainsection from "./components/MainSection";
 import Sidenav from "./components/SideNav";
 
 function App() {
+  const [consultationList, setConsultationList] = useState([]);
   const [patients, setPatients] = useState([
     {
       id: 1,
@@ -167,10 +168,36 @@ function App() {
     },
   ]);
 
+  const addNewPatient = (obj) => {
+    setPatients([...patients, obj]);
+    console.log("new patients list", patients);
+    console.log("new patient", obj);
+  };
+
+  // const submitHandler = () => {
+  //   setPatients((prevPatients) => {
+  //     return [
+  //       {
+  //         id: Math.random().toString(),
+  //         name: patients.name,
+  //         dateOfBirth: patients.dateOfBirth,
+  //         age: patients.age,
+  //         gender: patients.gender,
+  //         address: patients.address,
+  //         phoneNumber: patients.phoneNumber,
+  //         paymentMethod: patients.paymentMethod,
+  //         nextofKin: patients.nextofKin,
+  //         kinphoneNumber: patients.kinphoneNumber,
+  //       },
+  //       ...prevPatients,
+  //     ];
+  //   });
+  // };
+
   return (
     <div className="App">
       <Sidenav />
-      <Mainsection patients={patients} />
+      <Mainsection addNewPatient={addNewPatient} patients={patients} />
     </div>
   );
 }
