@@ -3,7 +3,7 @@ import Patientspage from "../pages/PatientsPage";
 import Testpage from '../pages/TestPage';
 import "./../styles/page-content.css";
 
-const Pagecontent = ({patients}) => {
+const Pagecontent = ({patients, addNewPatient}) => {
 
     
 
@@ -13,7 +13,7 @@ const Pagecontent = ({patients}) => {
             {/* give it a class name of "main-page-component" to apply default styling */}
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Patientspage patients={patients}/>}/> 
+                    <Route path="/" element={<Patientspage addNewPatient={addNewPatient} patients={patients}/>}/> 
                     <Route path="/test" element={<Testpage/>}/> 
                 </Routes>
             </BrowserRouter>
