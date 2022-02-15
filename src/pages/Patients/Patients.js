@@ -8,6 +8,10 @@ const Patients = ({ patients }) => {
   const [search, setSearch] = useState("");
   const [patientId, setPatientId] = useState("");
 
+  const handleSend = () => {
+    console.log("send clicked");
+  };
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -68,7 +72,9 @@ const Patients = ({ patients }) => {
                     <td>{patient.gender}</td>
                     <td>Cash</td>
                     <td>
-                      <button className="tablebtns">send</button>
+                      <button onClick={handleSend} className="tablebtns">
+                        send
+                      </button>
                     </td>
                   </tr>
                 );
