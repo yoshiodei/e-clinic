@@ -14,6 +14,10 @@ function App() {
       address: "Parsnip St. East Legon",
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
+      mafg:"2019-10-14",
+      exp:"2028-10-12",
+      availiable:"400",
+      retailprice:"MKS"
     },
   
     {
@@ -25,6 +29,10 @@ function App() {
       address: "Klagon, Accra",
       phoneNumber: "0579853237",
       paymentMethod: "NHIS",
+      mafg:"2012-2-14",
+      exp:"2028-10-12",
+      availiable:"700",
+      retailprice:"MKS239"
     },
     {
       id: 3,
@@ -35,6 +43,10 @@ function App() {
       address: "Mango St. East Legon",
       phoneNumber: "0243049937",
       paymentMethod: "Cash",
+      mafg:"2022-10-14",
+      exp:"2028-10-12",
+      availiable:"300",
+      retailprice:"MKS"
     },
     {
       id: 4,
@@ -45,6 +57,10 @@ function App() {
       address: "Orange St. East Legon",
       phoneNumber: "0243869937",
       paymentMethod: "NHIS",
+      mafg:"2012-10-14",
+      exp:"2018-10-12",
+      availiable:"400",
+      retailprice:"MKS2321"
     },
     {
       id: 5,
@@ -55,6 +71,10 @@ function App() {
       address: "Korlegonnor, Accra",
       phoneNumber: "0266849937",
       paymentMethod: "Cash",
+      mafg:"2019-10-14",
+      exp:"2027-10-12",
+      availiable:"300",
+      retailprice:"MKS"
     },
     {
       id: 6,
@@ -65,6 +85,10 @@ function App() {
       address: "Kwame Nkrumah Circle, Accra",
       phoneNumber: "0203946287",
       paymentMethod: "Cash",
+      mafg:"2019-10-1",
+      exp:"2029-10-12",
+      availiable:"700",
+      retailprice:"MKS"
     },
     {
       id: 7,
@@ -75,6 +99,10 @@ function App() {
       address: "Nima, Accra",
       phoneNumber: "054479347",
       paymentMethod: "NHIS",
+      mafg:"2019-10-14",
+      exp:"2028-1-12",
+      availiable:"420",
+      retailprice:"MKS"
     },
     {
       id: 8,
@@ -85,6 +113,10 @@ function App() {
       address: "Sowutuom, Accra",
       phoneNumber: "0244549937",
       paymentMethod: "NHIS",
+      mafg:"2019-10-14",
+      exp:"2023-10-12",
+      availiable:"200",
+      retailprice:"MKS"
     },
     {
       id: 9,
@@ -95,6 +127,10 @@ function App() {
       address: "Parsnip St. East Legon",
       phoneNumber: "0203049937",
       paymentMethod: "Cash",
+      mafg:"2019-10-1",
+      exp:"2028-10-1",
+      availiable:"700",
+      retailprice:"MKS"
     },
     {
       id: 10,
@@ -105,6 +141,10 @@ function App() {
       address: "Parsnip St. East Legon",
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
+      mafg:"2019-10-4",
+      exp:"2028-10-2",
+      availiable:"200",
+      retailprice:"MKS"
     },
     {
       id: 11,
@@ -115,6 +155,10 @@ function App() {
       address: "Algon St. Tema",
       phoneNumber: "0238563945",
       paymentMethod: "NHIS",
+      mafg:"2019-10-14",
+      exp:"2028-10-2",
+      availiable:"30",
+      retailprice:"MKS"
     },
     {
       id: 12,
@@ -125,6 +169,10 @@ function App() {
       address: "Latebiokorshie, Accra",
       phoneNumber: "0544829306",
       paymentMethod: "Cash",
+      mafg:"2019-10-14",
+      exp:"2028-10-12",
+      availiable:"400",
+      retailprice:"MKS"
     },
     {
       id: 13,
@@ -135,6 +183,10 @@ function App() {
       address: "Lapaz, Accra",
       phoneNumber: "0507291726",
       paymentMethod: "Cash",
+      mafg:"2019-10-14",
+      exp:"2028-10-12",
+      availiable:"400",
+      retailprice:"MKS"
     },
     {
       id: 14,
@@ -145,6 +197,11 @@ function App() {
       address: "Lagoon St Dansoman",
       phoneNumber: "0578192712",
       paymentMethod: "Cash",
+      mafg:"2019-10-14",
+      exp:"2028-10-12",
+      availiable:"400",
+      retailprice:"MKS8737"
+    
     },
     {
       id: 15,
@@ -155,6 +212,10 @@ function App() {
       address: "Awoshie, Accra",
       phoneNumber: "0524808128",
       paymentMethod: "Cash",
+      mafg:"2019-10-14",
+      exp:"2028-10-12",
+      availiable:"300",
+      retailprice:"MKS"
     },
     {
       id: 16,
@@ -165,6 +226,10 @@ function App() {
       address: "Labone, Accra",
       phoneNumber: "0203049937",
       paymentMethod: "NHIS",
+      mafg:"2019-10-14",
+      exp:"2028-10-11",
+      availiable:"200",
+      retailprice:"MKS"
     },
     {
       id: 17,
@@ -175,6 +240,10 @@ function App() {
       address: "James Town, Accra",
       phoneNumber: "0503647834",
       paymentMethod: "NHIS",
+      mafg:"2019-10-14",
+      exp:"2028-10-12",
+      availiable:"800",
+      retailprice:"MKS"
     },
   ];
   
