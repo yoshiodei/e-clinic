@@ -11,15 +11,27 @@
 }
 .label {
   margin-left: 30px;
-  background-color: gray;
+  background-color: rgb(219, 217, 217);
   padding: 10px;
-  color: white;
+  color: black;
 }
 .gen-input {
   padding-right: 40px;
 }
 .select {
   padding-right: 100px;
+}
+.submit-button {
+  display: flex;
+  justify-content: end;
+}
+.clear-button {
+  margin-top: 10px;
+  margin-right: 50px;
+}
+.clear-buttons {
+  margin-top: 10px;
+  margin-right: 10px;
 }
 .Drug-details {
   border: 2px solid gray;
