@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Adddrugs from "../pages/AddDrugs";
 import Consultation from "../pages/Consultation";
+import Manegedrugs from "../pages/ManegeDrugs";
 
 import Pharmacy from "../pages/Pharmacy";
 import Testpage from "../pages/TestPage";
@@ -14,9 +15,10 @@ const Pagecontent = ({ patients }) => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Consultation patients={patients} />} />
-          <Route path="/test" element={<Testpage />} />s
+          <Route path="/test" element={<Testpage />} />
           <Route path="/pharmacy" element={<Pharmacy patients={patients} />} />
           <Route path="/add" element={<Adddrugs />} />
+          <Route path="/manege" element={<Manegedrugs patients={patients} />} />
         </Routes>
       </BrowserRouter>
     </div>
