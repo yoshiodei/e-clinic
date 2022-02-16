@@ -146,6 +146,25 @@ const Adddrugs = () => {
           </div>
         </div>
       </div>
+      <div className="submit-button">
+        <button
+          type="button"
+          class="btn btn-success btn-sm clear-buttons "
+          data-bs-toggle="modal"
+          data-bs-target="#pharmacy"
+        >
+          SUBMIT
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success btn-sm clear-button"
+          data-bs-toggle="modal"
+          data-bs-target="#pharmacy"
+        >
+          CLEAR
+        </button>
+      </div>
     </section>
   );
 };
