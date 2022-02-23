@@ -18,7 +18,7 @@ const Pagecontent = ({ patients }) => {
           <Route path="/test" element={<Testpage />} />
           <Route path="/pharmacy" element={<Pharmacy patients={patients} />} />
           <Route path="/add" element={<Adddrugs />} />
-          <Route path="/manege" element={<Manegedrugs patients={patients} />} />
+          <Route path="/manage" element={<Manegedrugs patients={patients} />} />
         </Routes>
       </BrowserRouter>
     </div>
