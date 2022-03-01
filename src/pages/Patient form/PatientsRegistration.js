@@ -3,20 +3,6 @@ import "./PatientsRegistration.css";
 import { Form, Button } from "react-bootstrap";
 
 const Patientsregistration = ({ addNewPatient }) => {
-  const calcAge = getAge(patientsInput.dateOfBirth);
-  const [patientsInput, setPatientsInput] = useState({
-    id: 1,
-    name: "",
-    dateOfBirth: "",
-    age: calcAge(),
-    gender: "",
-    address: "",
-    phoneNumber: "",
-    paymentMethod: "",
-    nextofKin: "",
-    kinphoneNumber: "",
-  });
-
   const getAge = (dateString) => {
     var today = new Date();
     var birthDate = new Date(dateString);
@@ -27,7 +13,20 @@ const Patientsregistration = ({ addNewPatient }) => {
     }
     return age;
   };
-  console.log("age: " + getAge(patientsInput.dateOfBirth));
+  //console.log("age: " + getAge(patientsInput.dateOfBirth));
+  //const calcAge = getAge(patientsInput.dateOfBirth);
+  const [patientsInput, setPatientsInput] = useState({
+    id: 1,
+    name: "",
+    dateOfBirth: "",
+    age: getAge(patientsInput.dateOfBirth),
+    gender: "",
+    address: "",
+    phoneNumber: "",
+    paymentMethod: "",
+    nextofKin: "",
+    kinphoneNumber: "",
+  });
 
   const handleChange = (e) => {
     setPatientsInput({ ...patientsInput, [e.target.name]: e.target.value });
