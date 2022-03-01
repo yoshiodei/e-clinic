@@ -4,7 +4,7 @@ import Mainsection from "./components/MainSection";
 import Sidenav from "./components/SideNav";
 
 function App() {
-  const [consultationList, setConsultationList] = useState([]);
+  //const [consultationList, setConsultationList] = useState([]);
   const [patients, setPatients] = useState([
     {
       id: 1,
