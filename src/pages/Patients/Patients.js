@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./Patients.css";
-import { Button, ButtonGroup, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import Pagination from "../../components/Pagination";
 
 const Patients = ({ patients }) => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [patientId, setPatientId] = useState("");
+  //const [patientId, setPatientId] = useState("");
 
   const handleSend = () => {
     console.log("send clicked");
@@ -21,10 +21,10 @@ const Patients = ({ patients }) => {
       patient.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
     );
 
-  const handleCheckId = (id) => {
-    setPatientId(id);
-    // console.log('your id is', id);
-  };
+  // const handleCheckId = (id) => {
+  //   setPatientId(id);
+  //   // console.log('your id is', id);
+  // };
 
   return (
     <div className="patients">
