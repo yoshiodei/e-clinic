@@ -9,14 +9,13 @@ const Pagecontent = ({patients, examData, diseaseList, updatePatientList}) => {
     return (
         <div className="page-content">
             {/* the code for the page component goes here */}
-            {/* give it a class name of "main-page-component" to apply default styling */}
-            <BrowserRouter>
+            {/* give it a class name of "main-page-component" to apply default styling */} 
                 <Routes>
-                    <Route path="/" element={<Consultation updatePatientList={updatePatientList}  patients={patients} examData={examData} diseaseList={diseaseList} />}/> 
+                    <Route path="/" element={<div><h4>Patients</h4></div>}/> 
+                    <Route path="/consultation" element={<Consultation updatePatientList={updatePatientList}  patients={patients} examData={examData} diseaseList={diseaseList} />}/> 
                     <Route path="/test" element={<Testpage/>}/> 
                     <Route path="*" element={<Notfound />}/>
                 </Routes>
-            </BrowserRouter>
         </div>
     );
 }

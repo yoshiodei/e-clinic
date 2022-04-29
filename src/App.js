@@ -1,3 +1,4 @@
+import {BrowserRouter} from 'react-router-dom';
 import Mainsection from "./components/MainSection";
 import Sidenav from "./components/SideNav";
 import { useState } from 'react';
@@ -257,8 +258,10 @@ function App() {
 
   return (
     <div className="App">
-        <Sidenav />
-        <Mainsection patients={patients} examData={examData} diseaseList={diseaseList} updatePatientList={updatePatientList}/>
+      <BrowserRouter>
+          <Sidenav />
+          <Mainsection patients={patients} examData={examData} diseaseList={diseaseList} updatePatientList={updatePatientList}/>
+      </BrowserRouter>
     </div>
   );
 }
