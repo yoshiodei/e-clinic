@@ -1,59 +1,51 @@
 import {useState} from 'react';
 import Testimagemodal from './TestImageModal';
+import { connect } from 'react-redux';
+import { updateConsult } from '../../redux/action';
 
-const Diagnosemodal = ({patient, diseaseList, updatePatientList}) => {
+const Diagnosemodal = ({patient, diseaseList, updateConsult, consultationPatientsList}) => {
 
     const patientData = patient[0];
     const [image, setImage] = useState('');
-    // const [feedBack, setFeedBack] = useState('');
-    const [data, setData] = useState({
-        labTestComment: "",
-        clinicalDetail: "",
+
+    const [patientTextData, setPatientTextData] = useState({
         diagnosis: "Malaria",
     });
+
+    const [testFeedback, setTestFeedback] = useState({});
     
-    const [testResult, setTestResult] = useState({
-        // [e.target.name]:{
-        //     name: '',
-        //     testImage: '',
-        //     feedBack: feedBack
-        //  }
-    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let obj = {...data, testResult};
-        updatePatientList(patientData.id, obj);
-        setData({
-            labTestComment: "",
-            clinicalDetail: "",
-            diagnosis: "Malaria",
-        });
-        setTestResult({});
-        // console.log("submitted", obj);
+
+        let temporalTestArray = [];
+        let newPatientData = {};
+
+        for(let obj in testFeedback){
+            temporalTestArray.push( testFeedback[obj] );
+        } 
+
+        newPatientData = { ...patientData, ...patientTextData, tests: temporalTestArray, isDiagnosed: true, diagnosisDone: true };
+        
+        const newConsultArray = consultationPatientsList.map(consultationPatient => consultationPatient.id == newPatientData.id ? newPatientData : consultationPatient )
+
+        updateConsult(newConsultArray);
+        e.target.reset();
+        
     }
 
     const openInnerModal = (e) => {
         setImage(e.target.name);
     }
 
-    const handleChangeFeedback = (e, t) => {
-        e.preventDefault();
-        let feedBack = e.target.value;
-        setTestResult({...testResult,
-             [e.target.name]:{
-                                name: t.name,
-                                testImage: t.testImage,
-                                feedBack: feedBack
-                             } })
-
-        // console.log(testResult);
+    const handleChangeFeedback = (e, test) => {
+        setTestFeedback({ ...testFeedback , [e.target.name] : { ...test, feedBack: e.target.value  }  });
+        console.log( "test feedback data" , testFeedback);
     }
 
-    const handleAddData = (e) => {
-        e.preventDefault();
-        setData({ ...data, [e.target.name]: e.target.value, diagnosisDone: true});
-        // console.log(data);
+    const handleTextChange = (e) => {
+        setPatientTextData({ ...patientTextData , [e.target.name] : e.target.value });
+        // console.log("text data",patientTextData);
     }
 
 
@@ -86,10 +78,7 @@ const Diagnosemodal = ({patient, diseaseList, updatePatientList}) => {
                             </div>
                             <div className="diagnose-test__div diagnose-test__fb-div">
                                 <h6 className='h6-custom'>Feedback</h6>
-                                <input onChange={(e)=>{handleChangeFeedback(e,test)}} name={test.testId} class="form-control mb-2" required type="text" placeholder="enter feedback" aria-label="default input example"
-                                value={testResult[test.testId]?.feedBack ? testResult[test.testId].feedBack : ""}
-                                
-                                ></input>
+                                <input onChange={(e)=>{handleChangeFeedback(e,test)}} name={test.testId} class="form-control mb-2" required type="text" placeholder="enter feedback" aria-label="default input example" />
                             </div>
                         </div>
                         
@@ -101,23 +90,23 @@ const Diagnosemodal = ({patient, diseaseList, updatePatientList}) => {
                 </div>  
                 <div className='diagnose-textarea'>
                     <div class="mb-3">
-                        <h6 class="form-label">Clinical Detail</h6>
-                        <textarea name="clinicalDetail" value={data.clinicalDetail} onChange={(e)=>handleAddData(e)} required class="form-control text-area-custom" id="complaint" rows="3" ></textarea>
+                        <h6 class="form-label">Lab Test Detail</h6>
+                        <textarea name="labTestDetail" onChange={(e)=>handleTextChange(e)} required class="form-control text-area-custom" id="clinicalDetail" rows="3" ></textarea>
                     </div>
                     &nbsp;
                     &nbsp;
                     
                     <div class="mb-3">
                         <h6 class="form-label">Lab Test Comment</h6>
-                        <textarea name="labTestComment" value={data.labTestComment} onChange={(e)=>handleAddData(e)} required class="form-control text-area-custom" id="complaint" rows="3" ></textarea>
+                        <textarea name="labTestComment" onChange={(e)=>handleTextChange(e)} required class="form-control text-area-custom" id="comment" rows="3" ></textarea>
                     </div>
                 </div>
                 <div>
-                    <h6 class="form-label">Confirm Diagnose with Resultsmand Examination</h6>
-                    <select name="diagnosis" value={data.diagnosis} class="form-select" aria-label=".form-select-sm example" onChange={(e)=>handleAddData(e)} >
+                    <h6 class="form-label">Confirm Diagnose with Results from Examination</h6>
+                    <select name="diagnosis" class="form-select" aria-label=".form-select-sm example" onChange={(e)=>handleTextChange(e)} >
                         {diseaseList.length &&
                         (diseaseList.map((disease, index)=>    
-                        (<option selected={index == 0 ? true : false} value={disease.name} key={disease.id} >{disease.name}</option>)) )
+                        (<option value={disease.name} key={disease.id} >{disease.name}</option>)) )
                         }
                     </select>
                 </div>
@@ -137,4 +126,12 @@ const Diagnosemodal = ({patient, diseaseList, updatePatientList}) => {
     );
 }
 
-export default Diagnosemodal;
+const mapDispatchToProps = { updateConsult }
+
+const mapStateToProps = (state) => {
+    return {
+       consultationPatientsList : state.consultation
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Diagnosemodal);

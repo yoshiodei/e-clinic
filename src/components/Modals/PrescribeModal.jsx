@@ -1,10 +1,13 @@
 import {useState} from 'react';
+import { connect } from "react-redux";
+import { addToAccount } from '../../redux/action';
 
-const Prescribemodal = ({patient,updatePatientList}) => {
+const Prescribemodal = ({ patient, consultationPatientList, addToAccount }) => {
 
     const patientData = patient[0];
 
     let [medicineCount, setMedicineCount] = useState(1);
+    const [prescriptionText, setPrescriptionText] = useState({});
     const [data, setData] = useState({
         prescriptionComment: "",
         prescriptionPlan: ""
@@ -40,16 +43,15 @@ const Prescribemodal = ({patient,updatePatientList}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let obj = {
-            ...data,
-            medicines: drugArray,
-            prescriptionDone: true
-        }
         
-        updatePatientList(patientData.id, obj);
-    
-        resetPrescribeModal();
+        const newPatientObj = { ...patientData , ...prescriptionText, drugPrescription: drugArray  }
+        
+        let newConsultationPatientList = consultationPatientList.filter( consultationPatient => consultationPatient.id != patientData.id )
+        
+        addToAccount(newPatientObj, newConsultationPatientList);
 
+        resetPrescribeModal();
+        e.target.reset();
     }
 
 
@@ -57,7 +59,7 @@ const Prescribemodal = ({patient,updatePatientList}) => {
         let obj = { ...med, [e.target.name]: e.target.value };
         let newArray = drugArray.map(drug => drug.id == med.id ? obj : drug);
         setDrugArray(newArray);
-        console.log("array after change", drugArray );
+        console.log("drug array after change", drugArray );
     }
 
     const handleAddDrug = () => {
@@ -81,13 +83,12 @@ const Prescribemodal = ({patient,updatePatientList}) => {
             // console.log("filter", newDrugArray);
         }
         else{
-            console.log("can't delete item")
+            console.log("cannot delete item")
         }
     }
 
     const handleTextChange = (e) => {
-        setData({...data, [e.target.name]: e.target.value});
-        console.log("text change", data);
+        setPrescriptionText({...prescriptionText, [e.target.name]: e.target.value});
     } 
 
     
@@ -156,14 +157,14 @@ const Prescribemodal = ({patient,updatePatientList}) => {
                     <div className='diagnose-textarea'>
                         <div class="mb-3">
                             <h6 class="form-label">Prescription Comment</h6>
-                            <textarea name='prescriptionComment'  value={data.prescriptionComment}  onChange={(e)=>handleTextChange(e)} required class="form-control text-area-custom" id="complaint" rows="3" ></textarea>
+                            <textarea name='prescriptionComment'  onChange={(e)=>handleTextChange(e)} required class="form-control text-area-custom" id="complaint" rows="3" ></textarea>
                         </div>
                         &nbsp;
                         &nbsp;
                         
                         <div class="mb-3">
                             <h6 class="form-label">Prescription Management Plan</h6>
-                            <textarea name='prescriptionPlan' value={data.prescriptionPlan} onChange={(e)=>handleTextChange(e)} required class="form-control text-area-custom" id="complaint" rows="3" ></textarea>
+                            <textarea name='prescriptionManagementPlan' onChange={(e)=>handleTextChange(e)} required class="form-control text-area-custom" id="complaint" rows="3" ></textarea>
                         </div>
                     </div> 
                 </div>
@@ -177,4 +178,12 @@ const Prescribemodal = ({patient,updatePatientList}) => {
     );
 }
 
-export default Prescribemodal;
+const mapDispatchToProps = { addToAccount }
+
+const mapStateToProps = (state) => {
+    return {
+        consultationPatientList : state.consultation
+    }
+}
+
+export default connect( mapStateToProps, mapDispatchToProps)(Prescribemodal);

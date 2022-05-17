@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { connect } from 'react-redux'; 
+import { addToExam, updateConsult } from '../../redux/action';
 
-const Exammodal = ({patient, examData, diseaseList}) => {
+const Exammodal = ({patient, examData, updateConsult, diseaseList, consultationPatients, addToExam}) => {
     
 
     const [radio, setRadio] = useState(false);
@@ -10,6 +12,7 @@ const Exammodal = ({patient, examData, diseaseList}) => {
         historyOfComplaint: "",
         diagnosis: "Malaria",
         isDiagnosed: false,
+        diagnosisDone: false,
         tests:[],
     });
 
@@ -55,13 +58,23 @@ const Exammodal = ({patient, examData, diseaseList}) => {
 
     const handleSubmit = (e) => { 
         e.preventDefault();
-        examData(patient[0].id, data);
-        console.log("exam data",data);
+        // examData(patient[0].id, data);
+        // console.log("exam data", patient[0].id, {...patient[0], ...data});
+        if( data.isDiagnosed === false && data.diagnosisDone === false){
+            let newArray = consultationPatients.filter(consultationPatient => consultationPatient.id != patient[0].id );
+            addToExam({...patient[0], ...data}, newArray);
+            console.log("new array",{...patient[0], ...data});
+        }else if(data.isDiagnosed === true && data.diagnosisDone === true){
+            let updateArray = consultationPatients.map(consultationPatient => consultationPatient.id == patient[0].id ? {...patient[0], ...data} : consultationPatient);
+            updateConsult(updateArray);
+        }
+     
         setData({
             complaint: "",
             historyOfComplaint: "",
             diagnosis: "Malaria",
             isDiagnosed: false,
+            diagnosisDone: false,
             tests: []
         });
         setRadio(false);
@@ -177,7 +190,7 @@ const Exammodal = ({patient, examData, diseaseList}) => {
                 {/* </form> */}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" type="submit" >Submit</button>
+                <button class="btn btn-primary" type="submit" >Submit</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
             </div>
             </div>
@@ -187,4 +200,10 @@ const Exammodal = ({patient, examData, diseaseList}) => {
     );
 }
 
-export default Exammodal;
+const mapDispatchToProps = { addToExam, updateConsult }
+
+const mapStateToProps = (state) => {
+    return { consultationPatients : state.consultation }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Exammodal);
