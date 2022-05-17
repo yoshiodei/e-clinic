@@ -3,12 +3,13 @@ import Exammodal from "../components/Modals/ExamModal";
 import Patienthistorymodsal from "../components/Modals/PatientHistoryModsal";
 import Prescribemodal from "../components/Modals/PrescribeModal";
 import "./../styles/consultation.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
+import { connect } from "react-redux";
+import { setConsultationStatus } from "../redux/action";
 
 
-
-const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
+const Consultation = ({ setConsultationStatus ,consultPatients, patients, examData, diseaseList, updatePatientList}) => {
 
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
@@ -17,9 +18,13 @@ const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
     const handleChange = (e) =>{
         setSearch(e.target.value);
     }
+
+    useEffect(() => {
+        setConsultationStatus();
+    }, []);
     
     
-    const filterName = () => patients.filter((patient,index) =>  patient.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+    const filterName = () => consultPatients.filter((patient,index) =>  patient.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
 
     const handleCheckId = (id)=>{
         setPatientId(id);
@@ -79,7 +84,7 @@ const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
                                         
                                         { 
                                             patient.examDone &&
-                                            (<button onClick={()=>handleCheckId(patient.id)} type="button" disabled class="btn btn-success btn-sm custom-btn" data-bs-toggle="modal" data-bs-target="#examModal">
+                                            (<button type="button" disabled class="btn btn-success btn-sm custom-btn" data-bs-toggle="modal" data-bs-target="#examModal">
                                                 <i class="bi bi-check-lg icon-style"></i>
                                              Done
                                         </button>)
@@ -89,7 +94,7 @@ const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
                                     <td>
                                         {
                                          !patient.diagnosisDone &&   
-                                        (<button type="button" class="btn btn-secondary btn-sm custom-btn" data-bs-toggle="modal" disabled={!patient.examDone} data-bs-target="#diagnoseModal">
+                                        (<button type="button" class="btn btn-secondary btn-sm custom-btn" onClick={()=>handleCheckId(patient.id)} data-bs-toggle="modal" disabled={!patient.examDone} data-bs-target="#diagnoseModal">
                                             <i class="bi bi-hourglass-split icon-style"></i>
                                             Pending</button>)
                                         }
@@ -107,7 +112,7 @@ const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
 
                                         {
                                         !(patient.diagnosisDone && patient.examDone && patient?.prescriptionDone) &&   
-                                        (<button type="button" class="btn btn-secondary btn-sm custom-btn" data-bs-toggle="modal" disabled={!(patient.examDone && patient.diagnosisDone)} data-bs-target="#prescribeModal">
+                                        (<button type="button" class="btn btn-secondary btn-sm custom-btn" onClick={()=>handleCheckId(patient.id)} data-bs-toggle="modal" disabled={!(patient.examDone && patient.diagnosisDone)} data-bs-target="#prescribeModal">
                                             <i class="bi bi-hourglass-split icon-style"></i>
                                             Pending</button>)
                                         }
@@ -138,14 +143,23 @@ const Consultation = ({patients, examData, diseaseList, updatePatientList}) => {
             
             {/* ---- Modals ---- */}
 
-            <Patienthistorymodsal patient={patients.filter(patient=> patient.id == patientId)} />
-            <Exammodal  patient={patients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} examData={examData} />
-            <Diagnosemodal patient={patients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} updatePatientList={updatePatientList} />
-            <Prescribemodal patient={patients.filter(patient=> patient.id == patientId)} updatePatientList={updatePatientList}/>
+            <Patienthistorymodsal patient={consultPatients.filter(patient=> patient.id == patientId)} />
+            <Exammodal  patient={consultPatients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} examData={examData} />
+            <Diagnosemodal patient={consultPatients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} updatePatientList={updatePatientList} />
+            <Prescribemodal patient={consultPatients.filter(patient=> patient.id == patientId)} updatePatientList={updatePatientList}/>
             
 
         </section>
     );
 }
 
-export default Consultation;
+const mapDispatchToProps = { setConsultationStatus }
+
+const mapStateToProps = (state) => {
+    return {
+        consultPatients : state.consultation
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Consultation);

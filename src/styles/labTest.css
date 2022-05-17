@@ -1,0 +1,37 @@
+.form-custom--text-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-div {
+    width: 48%;
+}
+
+.test-div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1.5px solid lightgrey;
+    background-color: rgb(243, 243, 243);
+}
+
+.test-div-input-div {
+    flex: 1;
+}
+
+.test-div-input-div input {
+    width: 90%;
+    height: 43px;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    outline: none;
+}
+
+input.test-input {
+    font-weight: 700;
+    background-color: transparent;
+    color: rgb(79, 79, 79);
+}
+

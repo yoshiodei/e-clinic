@@ -1,4 +1,5 @@
 import "./../styles/patient-info.css";
+import {connect} from 'react-redux';
 
 const Patientinfo = ({patients}) => {
 
@@ -44,4 +45,8 @@ const Patientinfo = ({patients}) => {
     );
 }
 
-export default Patientinfo;
+const mapStateToProps = (state) => {
+    return { patients : state.patientsTally }
+}
+
+export default connect(mapStateToProps)(Patientinfo);

@@ -2,7 +2,10 @@ import {BrowserRouter} from 'react-router-dom';
 import Mainsection from "./components/MainSection";
 import Sidenav from "./components/SideNav";
 import { useState } from 'react';
+import { createStore } from "redux";
+import reducer from "./redux/reducer";
 
+export const store = createStore(reducer);
 
 function App() {
 

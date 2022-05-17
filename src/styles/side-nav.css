@@ -22,13 +22,19 @@
 .side-nav div.item-div{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 8vh;
     padding-left: 2vw;
+    padding-right: 1vw;
     border-left: 5px solid transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.8);
     transition: all 0.4s;
     cursor: pointer;
+}
+
+.side-nav div.item-div span{
+    color: grey;
 }
 
 .side-nav div.item-div:hover, .side-nav div.item-div.active{

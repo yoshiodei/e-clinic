@@ -1,39 +1,35 @@
-import {useState, useEffect} from 'react';
+import {useState,useEffect} from 'react';
 import { connect } from 'react-redux';
-import "./../styles/patients.css";
+import Accountpagemodal from '../components/Modals/AccountPageModal';
 import Pagination from '../components/Pagination';
-import Newpatientmodal from '../components/Modals/newPatientModal';
-import { addToConsult, setPatientsStatus } from '../redux/action';
+import { addToPharmacy, setAccountStatus } from '../redux/action';
 
-const Patientspage = ({patients, addToConsult, setPatientsStatus}) => {
+const Accountspage = ({patients, addToPharmacy, setAccountStatus}) => {
 
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
-    // const [patientId, setPatientId] = useState("");
+
+    const [patientId, setPatientId] = useState("");
 
     const handleChange = (e) =>{
         setSearch(e.target.value);
     }
 
-    const sendToConsult = (obj) => {
-        let newObj = {...obj, examDone: false, diagnosisDone: false,}
-        let newPatientList = patients.filter((patient)=> patient.id != obj.id);
-        // console.log(newPatientList);
-        addToConsult(newObj, newPatientList);
+    const sendToPharmacy = (accountPatient) => {
+        let accountPatientList = patients.filter( patient => patient.id != accountPatient.id );
+        addToPharmacy(accountPatient, accountPatientList);
     }
     
-    const filterName = () => patients.filter((patient,index) =>  patient.name.toLowerCase().includes(search.toLowerCase()))
+    const filterName = () => patients.filter((patient,index) =>  patient.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
 
     useEffect(() => {
-        setPatientsStatus();
+        setAccountStatus();
     }, []);
 
     return (
         <section className='main-page-section'>
             <div className='main-page-section__header-div'>
-                <h4 >PATIENTS</h4>
-                <button type="button" class="btn btn-success btn-sm custom-btn"
-                  data-bs-toggle="modal" data-bs-target="#newPatientModal">New Patient</button>
+                <h4 >ACCOUNTS</h4>
             </div>
             
             <br/>
@@ -45,15 +41,17 @@ const Patientspage = ({patients, addToConsult, setPatientsStatus}) => {
                 aria-label="default input example"
                 onChange={handleChange}
             />
-            <table class="table table-striped">
+                        <table class="table table-striped">
                 <thead >
                     <tr >
                         <th scope="col">#</th>
                         <th scope="col" colSpan="3">Name</th>
                         <th scope="col">Age</th>
                         <th scope="col">Gender</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Consultation</th>  
+                        <th scope="col">Address</th>
+                        <th scope="col">Payment Type</th>    
+                        <th scope="col">Receipt</th>  
+                        <th scope="col">Send to Pharmacy</th>  
                     </tr>
                 </thead>
                 <tbody style={{position: "relative"}}>
@@ -66,9 +64,14 @@ const Patientspage = ({patients, addToConsult, setPatientsStatus}) => {
                                     <td colspan="3">{patient.name}</td>
                                     <td>{patient.age}</td>
                                     <td>{patient.gender}</td>
+                                    <td>{patient.address}</td>
                                     <td>{patient.paymentMethod}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-sm custom-btn" onClick={()=>sendToConsult(patient)}>Send to consultation</button>
+                                        <button type="button" class="btn btn-secondary btn-sm custom-btn" data-bs-toggle="modal" data-bs-target="#accountModal" onClick={()=> setPatientId(patient.id)} >Receipt</button>
+                                        
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-sm custom-btn"  onClick={()=> sendToPharmacy(patient) } >Send</button>
                                     </td>
                                 </tr>
                                 
@@ -82,27 +85,22 @@ const Patientspage = ({patients, addToConsult, setPatientsStatus}) => {
             ( <Pagination patientNumber={filterName().length} setPage={setPage} page={page} /> ) : null
             }
 
-            
-            {/* ---- Modals ---- */}
 
-            <Newpatientmodal />
+             {/* ---- Modals ---- */}
 
-            {/* <Patienthistorymodsal patient={patients.filter(patient=> patient.id == patientId)} />
-            <Exammodal  patient={patients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} examData={examData} />
-            <Diagnosemodal patient={patients.filter(patient=> patient.id == patientId)} diseaseList={diseaseList} updatePatientList={updatePatientList} />
-            <Prescribemodal patient={patients.filter(patient=> patient.id == patientId)} updatePatientList={updatePatientList}/> */}
-            
+             <Accountpagemodal patient={patients.filter(patient=> patient.id == patientId)} />
 
-        </section>
+
+        </section>    
     );
 }
 
-const mapDispatchToProps = { addToConsult, setPatientsStatus }
+const mapDispatchToProps = { addToPharmacy, setAccountStatus }
 
 const mapStateToProps = (state) => {
     return {
-        patients : state.patients
+        patients : state.account
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Patientspage);
+export default connect(mapStateToProps,mapDispatchToProps)(Accountspage);
